@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int numSubarrayProductLessThanK(vector<int>& nums, int k) {
+        int n=nums.size();
+        int count = 0;
+      long long tempproduct = 1;
+    
+       
+        for (int l = 0; l < n; l++) {
+              tempproduct = 1;
+            if ((long long)tempproduct * nums[l] < k) {
+                tempproduct *= nums[l];
+                int r = l + 1;
+                count++;
+
+            
+            while (r < n) {
+                if ((long long)tempproduct * nums[r] < k) {
+                    tempproduct *= nums[r];
+                    count++;
+                    r++;
+                }
+                else {
+                   
+                    break;
+                }
+            }
+            }
+        }
+        return count;
+    }
+};
