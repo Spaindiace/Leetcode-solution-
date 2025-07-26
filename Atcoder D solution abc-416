@@ -1,0 +1,54 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define ll long long
+#pragma GCC optimize("O3,unroll-loops")
+ 
+void solve(){
+  
+ll n,m;
+cin>>n>>m;
+
+vector<ll>a(n);
+for(auto&k:a){
+  cin>>k;
+}
+vector<ll>b(n);
+for(auto&k:b){
+  cin>>k;
+}
+
+sort(a.rbegin(),a.rend());
+
+sort(b.begin(),b.end());
+
+multiset<int> ms(a.begin(), a.end());
+
+ll sum=0;
+
+for(int i=0; i<n; i++){
+ ll target = m - b[i];
+ auto it = ms.lower_bound(target);
+if (it == ms.end()) {
+            
+  it = ms.begin();
+ }
+  sum += (*it + b[i]) % m;
+ ms.erase(it);
+}
+cout<<sum<<endl;
+  
+}
+ 
+signed main() {
+  
+   ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+   int t;
+    cin>>t;
+   while(t--)
+   {
+      
+      solve ();
+    }
+    return 0;
+} 
